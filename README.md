@@ -16,4 +16,6 @@ This repository contains the initial baseline pipeline developed in the context 
 
 ## Setup
 ```bash
-poetry install
+cd aih-privacy
+.venv/Scripts/activate
+python -m pip install -r requirements.txt
