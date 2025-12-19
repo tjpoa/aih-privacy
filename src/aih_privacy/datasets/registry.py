@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from aih_fall_privacy.config import DATA_RAW_DIR
+from src.aih_privacy.config import DATA_RAW_DIR
 
 @dataclass(frozen=True)
 class DatasetSpec:

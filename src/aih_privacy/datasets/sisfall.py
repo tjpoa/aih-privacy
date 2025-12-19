@@ -3,7 +3,7 @@ import re
 import pandas as pd
 import numpy as np
 
-from aih_fall_privacy.config import DATA_RAW_DIR
+from src.aih_privacy.config import DATA_RAW_DIR
 
 SISFALL_DIR = DATA_RAW_DIR / "sisfall"
 
