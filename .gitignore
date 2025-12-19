@@ -5,12 +5,9 @@ data/*
 # results pesados
 results/runs/
 
-# python / vscode
+# env
+.env
 .venv/
 __pycache__/
 .ipynb_checkpoints/
-.vscode/
 .DS_Store
-
-# env
-.env
