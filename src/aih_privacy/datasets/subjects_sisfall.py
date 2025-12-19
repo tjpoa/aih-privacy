@@ -1,0 +1,46 @@
+import pandas as pd
+
+def load_subjects():
+    subjects = [
+        {"subject_id":"SA01","age":26,"height_cm":165,"weight_kg":53.0,"gender":"F"},
+        {"subject_id":"SA02","age":23,"height_cm":176,"weight_kg":58.5,"gender":"M"},
+        {"subject_id":"SA03","age":19,"height_cm":156,"weight_kg":48.0,"gender":"F"},
+        {"subject_id":"SA04","age":23,"height_cm":170,"weight_kg":72.0,"gender":"M"},
+        {"subject_id":"SA05","age":22,"height_cm":172,"weight_kg":69.5,"gender":"M"},
+        {"subject_id":"SA06","age":21,"height_cm":169,"weight_kg":58.0,"gender":"M"},
+        {"subject_id":"SA07","age":21,"height_cm":156,"weight_kg":63.0,"gender":"F"},
+        {"subject_id":"SA08","age":21,"height_cm":149,"weight_kg":41.5,"gender":"F"},
+        {"subject_id":"SA09","age":24,"height_cm":165,"weight_kg":64.0,"gender":"M"},
+        {"subject_id":"SA10","age":21,"height_cm":177,"weight_kg":67.0,"gender":"M"},
+        {"subject_id":"SA11","age":19,"height_cm":170,"weight_kg":80.5,"gender":"M"},
+        {"subject_id":"SA12","age":25,"height_cm":153,"weight_kg":47.0,"gender":"F"},
+        {"subject_id":"SA13","age":22,"height_cm":157,"weight_kg":55.0,"gender":"F"},
+        {"subject_id":"SA14","age":27,"height_cm":160,"weight_kg":46.0,"gender":"F"},
+        {"subject_id":"SA15","age":25,"height_cm":160,"weight_kg":52.0,"gender":"F"},
+        {"subject_id":"SA16","age":20,"height_cm":169,"weight_kg":61.0,"gender":"F"},
+        {"subject_id":"SA17","age":23,"height_cm":182,"weight_kg":75.0,"gender":"M"},
+        {"subject_id":"SA18","age":23,"height_cm":181,"weight_kg":73.0,"gender":"M"},
+        {"subject_id":"SA19","age":30,"height_cm":170,"weight_kg":76.0,"gender":"M"},
+        {"subject_id":"SA20","age":30,"height_cm":150,"weight_kg":42.0,"gender":"F"},
+        {"subject_id":"SA21","age":30,"height_cm":183,"weight_kg":68.0,"gender":"M"},
+        {"subject_id":"SA22","age":19,"height_cm":158,"weight_kg":50.5,"gender":"F"},
+        {"subject_id":"SA23","age":24,"height_cm":156,"weight_kg":48.0,"gender":"F"},
+        {"subject_id":"SE01","age":71,"height_cm":171,"weight_kg":102.0,"gender":"M"},
+        {"subject_id":"SE02","age":75,"height_cm":150,"weight_kg":57.0,"gender":"F"},
+        {"subject_id":"SE03","age":62,"height_cm":150,"weight_kg":51.0,"gender":"F"},
+        {"subject_id":"SE04","age":63,"height_cm":160,"weight_kg":59.0,"gender":"F"},
+        {"subject_id":"SE05","age":63,"height_cm":165,"weight_kg":72.0,"gender":"M"},
+        {"subject_id":"SE06","age":60,"height_cm":163,"weight_kg":79.0,"gender":"M"},
+        {"subject_id":"SE07","age":65,"height_cm":168,"weight_kg":76.0,"gender":"M"},
+        {"subject_id":"SE08","age":68,"height_cm":163,"weight_kg":72.0,"gender":"F"},
+        {"subject_id":"SE09","age":66,"height_cm":167,"weight_kg":65.0,"gender":"M"},
+        {"subject_id":"SE10","age":64,"height_cm":156,"weight_kg":66.0,"gender":"F"},
+        {"subject_id":"SE11","age":66,"height_cm":169,"weight_kg":63.0,"gender":"F"},
+        {"subject_id":"SE12","age":69,"height_cm":164,"weight_kg":56.5,"gender":"M"},
+        {"subject_id":"SE13","age":65,"height_cm":171,"weight_kg":72.5,"gender":"M"},
+        {"subject_id":"SE14","age":67,"height_cm":163,"weight_kg":58.0,"gender":"M"},
+        {"subject_id":"SE15","age":64,"height_cm":150,"weight_kg":50.0,"gender":"F"},
+    ]
+    df = pd.DataFrame(subjects)
+    df["age_group"] = df["subject_id"].str[:2]  # SA / SE
+    return df
