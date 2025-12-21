@@ -69,6 +69,8 @@ def iter_files():
     """
     Returns a sorted list of SisFall .txt files matching the expected pattern.
     """
+    # print(SISFALL_DIR)
+
     return sorted(
         f for f in SISFALL_DIR.rglob("*.txt")
         if pattern.match(f.name)
