@@ -73,6 +73,9 @@ def iter_files():
     )
 
 def acc_magnitude(df):
+    """
+    Compute acc magnitude from gx, gy, gz columns
+    """
     return np.sqrt(
         df["acc_x_adxl345"]**2 +
         df["acc_y_adxl345"]**2 +
@@ -84,9 +87,9 @@ def gyro_magnitude(df):
     Compute gyroscope magnitude from gx, gy, gz columns
     """
     return np.sqrt(
-        df["gyro_x"]**2 +
-        df["gyro_y"]**2 +
-        df["gyro_z"]**2
+        df["gyro_x_itg3200"]**2 +
+        df["gyro_y_itg3200"]**2 +
+        df["gyro_z_itg3200"]**2
     ).values
 
 
