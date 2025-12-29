@@ -9,12 +9,6 @@ SISFALL_DIR = DATA_RAW_DIR / "sisfall"
 
 SAMPLING_RATE = 200
 
-WINDOW_SIZES = {
-    "0.5s": int(0.5 * SAMPLING_RATE),  # 100
-    "1s":   int(1.0 * SAMPLING_RATE),  # 200
-    "2s":   int(2.0 * SAMPLING_RATE),  # 400
-}
-
 COLUMN_NAMES = [
     "acc_x_adxl345", "acc_y_adxl345", "acc_z_adxl345",
     "gyro_x_itg3200", "gyro_y_itg3200", "gyro_z_itg3200",
@@ -27,7 +21,9 @@ FACTOR_ADXL345 = 32 / (2**13)
 FACTOR_ITG3200 = 4000 / (2**16)
 FACTOR_MMA8451Q = 16 / (2**14)
 
-#
+WINDOW_SIZE = 200  # 1 second  (SisFall = 200 Hz)
+
+
 
 def load_file(filepath: Path) -> pd.DataFrame:
     df = pd.read_csv(
@@ -83,7 +79,17 @@ def acc_magnitude(df):
         df["acc_z_adxl345"]**2
     )
 
-WINDOW_SIZE = 200  # 1 second  (SisFall = 200 Hz)
+def gyro_magnitude(df):
+    """
+    Compute gyroscope magnitude from gx, gy, gz columns
+    """
+    return np.sqrt(
+        df["gyro_x"]**2 +
+        df["gyro_y"]**2 +
+        df["gyro_z"]**2
+    ).values
+
+
 
 def window_stat(signal, stat_fn):
     return [
