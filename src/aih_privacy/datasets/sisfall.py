@@ -15,15 +15,11 @@ COLUMN_NAMES = [
     "acc_x_mma8451q", "acc_y_mma8451q", "acc_z_mma8451q",
 ]
 
-
-
 FACTOR_ADXL345 = 32 / (2**13)
 FACTOR_ITG3200 = 4000 / (2**16)
 FACTOR_MMA8451Q = 16 / (2**14)
 
 WINDOW_SIZE = 200  # 1 second  (SisFall = 200 Hz)
-
-
 
 def load_file(filepath: Path) -> pd.DataFrame:
     df = pd.read_csv(
@@ -93,7 +89,6 @@ def gyro_magnitude(df):
     ).values
 
 
-
 def window_stat(signal, stat_fn):
     return [
         stat_fn(signal[i:i+WINDOW_SIZE])
@@ -105,7 +100,6 @@ def sliding_windows(signal, window_size, step):
     for start in range(0, len(signal) - window_size + 1, step):
         windows.append(signal[start:start + window_size])
     return windows
-
 
 def extract_features(window):
     return {
