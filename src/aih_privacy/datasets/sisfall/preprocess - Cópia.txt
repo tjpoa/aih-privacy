@@ -1,0 +1,62 @@
+from scipy.signal import butter, lfilter
+import pandas as pd
+
+# PREPROCESSING DATASET UTILS
+
+def butter_lowpass(cutoff_hz: float, fs_hz: float, order: int = 4):
+    nyq = 0.5 * fs_hz
+    w = cutoff_hz / nyq
+    b, a = butter(order, w, btype="low")
+    return b, a
+
+def filter_one_group(g: pd.DataFrame, b, a, cols=("ax","ay","az")) -> pd.DataFrame:
+    # manter a ordem temporal dentro do trial
+    g = g.sort_values("sample_idx").copy()
+    for c in cols:
+        g[c] = lfilter(b, a, g[c].to_numpy(dtype=float))
+    return g
+
+def apply_filter_by_trial(df: pd.DataFrame,
+                          cutoff_hz: float = 5.0,
+                          fs_hz: float = 200.0,
+                          order: int = 4,
+                          cols=("ax","ay","az")) -> pd.DataFrame:
+    b, a = butter_lowpass(cutoff_hz, fs_hz, order)
+    # group_keys=False evita index multi-nível no retorno
+    out = (
+        df.groupby("trial_id", group_keys=False)
+        .apply(filter_one_group, b=b, a=a, cols=cols, include_groups=False)
+    )
+    return out
+
+def rename_axes(df):
+    """
+    Standardiza os nomes dos eixos de aceleração para ax, ay, az.
+
+    Espera colunas do SisFall:
+      - acc_x_adxl345
+      - acc_y_adxl345
+      - acc_z_adxl345
+
+    Devolve uma cópia do DataFrame com:
+      - ax, ay, az
+    """
+    required = {
+        "acc_x_adxl345",
+        "acc_y_adxl345",
+        "acc_z_adxl345",
+    }
+
+    missing = required - set(df.columns)
+    if missing:
+        raise ValueError(
+            f"rename_axes: colunas em falta: {sorted(missing)}"
+        )
+
+    return df.rename(
+        columns={
+            "acc_x_adxl345": "ax",
+            "acc_y_adxl345": "ay",
+            "acc_z_adxl345": "az",
+        }
+    )

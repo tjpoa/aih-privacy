@@ -9,8 +9,6 @@ class DatasetSpec:
 
 DATASETS = {
     "sisfall": DatasetSpec(name="sisfall", raw_dir=DATA_RAW_DIR / "sisfall"),
-    # "pamap2": DatasetSpec(name="pamap2", raw_dir=DATA_RAW_DIR / "pamap2"),
-    # "mhealth": DatasetSpec(name="mhealth", raw_dir=DATA_RAW_DIR / "mhealth"),
 }
 
 def get_dataset(name: str) -> DatasetSpec:
